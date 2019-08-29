@@ -127,11 +127,12 @@
                                                                                         <td>{{ videoDetalle.nombre_video }}</td>
                                                                                         <td>{{ videoDetalle.fecha_emision }}</td>
                                                                                         <td>{{ videoDetalle.nombre_video }}</td>
-                                                                                        <td>{{ totalParcial = totalParcial + calcularParcialLengthVideo}}</td>
+                                                                                        <td>{{ videoDetalle.lenght }}</td>
                                                                                         <td>
                                                                                         <button type="submit" class="btn btn-primary waves-effect waves-light mx-auto" @click="eliminarDetalleVideo(index)" >X</button>
                                                                                         </td>
                                                                                     </tr>
+                                                                                    
                                                                             </draggable>
                                                                            
                                                                         <tfoot>
@@ -314,7 +315,7 @@
                      resultado =  (this.arrayDetallePlaylist[i].lenght)
                    
                  }
-                  return resultado; 
+                  return resultado;
 
                   
              },

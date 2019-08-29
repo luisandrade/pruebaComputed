@@ -2490,6 +2490,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 var message = ["vue.draggable", "draggable", "component", "for", "vue.js 2.0", "based", "on", "Sortablejs"];
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -41803,14 +41804,7 @@ var render = function() {
                       _vm._v(" "),
                       _c("td", [_vm._v(_vm._s(videoDetalle.nombre_video))]),
                       _vm._v(" "),
-                      _c("td", [
-                        _vm._v(
-                          _vm._s(
-                            (_vm.totalParcial =
-                              _vm.totalParcial + _vm.calcularParcialLengthVideo)
-                          )
-                        )
-                      ]),
+                      _c("td", [_vm._v(_vm._s(videoDetalle.lenght))]),
                       _vm._v(" "),
                       _c("td", [
                         _c(
