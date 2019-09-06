@@ -7,16 +7,21 @@
 
 @section('breadcrumb')
 <div class="col-sm-6">
-    <h4 class="page-title">Programar Lista de Reproducción</h4>
+    <h4 class="page-title">Editar Lista</h4>
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="javascript:void(0);">Dashboard</a></li>
-        <li class="breadcrumb-item active">Programación</li>
+        <li class="breadcrumb-item"><a href="javascript:void(0);">Veltrix</a></li>
+        <li class="breadcrumb-item"><a href="javascript:void(0);">Forms</a></li>
+        <li class="breadcrumb-item active">Form Editors</li>
     </ol>
 </div>
 @endsection
 
 @section('content')
-                <router-view></router-view>
+
+<div id="app">
+<editar-component></editar-component>
+</div>
+                 
 @endsection
 
 @section('script')

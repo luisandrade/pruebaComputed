@@ -1,23 +1,10 @@
-@extends('layouts.master')
 
-@section('css')
-<!-- Dropzone css -->
-<link href="{{ URL::asset('plugins/dropzone/dist/dropzone.css') }}" rel="stylesheet" type="text/css">
-@endsection
+ 
+<style src="../../../public/plugins/dropzone/dist/dropzone.css"></style>
 
-@section('breadcrumb')
-<div class="col-sm-6">
-    <h4 class="page-title">File Upload</h4>
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="javascript:void(0);">Veltrix</a></li>
-        <li class="breadcrumb-item"><a href="javascript:void(0);">Forms</a></li>
-        <li class="breadcrumb-item active">File Upload</li>
-   </ol>
-</div>
-@endsection
 
-@section('content')
-<div class="row">
+<template>
+    <div class="row">
                                 <div class="col-12">
                                     <div class="card">
                                         <div class="card-body">
@@ -68,16 +55,21 @@
                                                                         </tr>
                                                                         
                                                                         
-                                                                    </tbody>
-                                                                </table>
-                                                            </div>
+                                                    </tbody>
+                                                </table>
+                                            </div>
                                         </div>
                                     </div>
                                 </div> <!-- end col -->
-                            </div> <!-- end row -->        
-@endsection
+                            </div> <!-- end row -->
 
-@section('script')
-<!-- Dropzone js -->
-<script src="{{ URL::asset('plugins/dropzone/dist/dropzone.js') }}"></script>
-@endsection
+                            
+</template>
+
+<script>
+ 
+import('../../../public/plugins/dropzone/dist/dropzone.js')
+
+</script>
+
+

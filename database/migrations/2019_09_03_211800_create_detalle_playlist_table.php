@@ -20,9 +20,9 @@ class CreateDetallePlaylistTable extends Migration
             $table->foreign('id_video')->references('id')->on('video');
 
             $table->integer('id_playlist')->unsigned();
-            $table->foreign('id_playlist')->references('id')->on('playlist');
+            $table->foreign('id_playlist')->references('id')->on('playlist')->onDelete('cascade');
 
-            $table->integer('length_total');
+            $table->time('length_total');
 
             
            

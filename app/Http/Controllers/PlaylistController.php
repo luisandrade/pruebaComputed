@@ -11,10 +11,12 @@ class PlaylistController extends Controller
 {
     public function index( Request $request){
         
-        $playlist = Playlist::all();
+        $playlist = DB::table('playlist')->join('canales', 'playlist.id_canal', '=','canales.id')
+        ->select('nombre_playlist','hora_inicio','hora_final','nombre_canal','id_canal','fecha_emision','playlist.id')->get();
         return ['playlist' => $playlist];
     }
-
+    
+   
     public function store(Request $request){
        
         try{
@@ -22,6 +24,8 @@ class PlaylistController extends Controller
 
             $playlist = new Playlist();
             $playlist->id_usuario = $request->id_usuario;
+            $playlist->id_canal = $request->id_canal;
+            $playlist->hora_final = $request->hora_final;
             $playlist->nombre_playlist = $request->nombre_playlist;
             $playlist->hora_inicio = $request->hora_inicio;
             $playlist->fecha_emision = $request->fecha_emision;
@@ -50,5 +54,49 @@ class PlaylistController extends Controller
             DB::rollback();
             
         }
+    }
+    public function delete($id){
+        $playlist = Playlist::findOrFail($id);
+        $playlist->delete();
+        
+    }
+    public function update(Request $request, $id){
+       
+        try{
+            DB::beginTransaction();
+
+           
+            $playlist = new Playlist();
+            $playlist->id_usuario = $request->id_usuario;
+            $playlist->id_canal = $request->id_canal;
+            $playlist->hora_final = $request->hora_final;
+            $playlist->nombre_playlist = $request->nombre_playlist;
+            $playlist->hora_inicio = $request->hora_inicio;
+            $playlist->fecha_emision = $request->fecha_emision;
+            $playlist->loop = $request->loop;
+            $playlist->auto_start = $request->auto_start;
+            $playlist->save();
+
+            DB::commit();
+
+        } catch (Exception $e){
+            DB::rollBack();
+        }
+
+    }
+    public function edit($id){
+   
+        $playlist = Playlist::find($id);
+        $playlistDetalle = DetallePlaylist::find($id);
+        return  $playlist;
+        //return view('edit');
+    }
+    public function prueba($id){
+            $playlist = Playlist::find($id)
+            ->join('detalle_playlist', 'detalle_playlist.id_playlist', '=', 'playlist.id')
+            ->join('video', 'video.id', '=', 'detalle_playlist.id_video')
+            ->select('detalle_playlist.*')->where('playlist.id',$id)->get();
+
+            return $playlist;
     }
 }

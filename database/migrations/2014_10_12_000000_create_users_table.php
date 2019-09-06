@@ -15,8 +15,9 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('usuario')->unique();
+            $table->string('nombre_usuario')->unique();
             $table->string('password');
+            
 
             $table->integer('idrol')->unsigned();
             $table->foreign('idrol')->references('id')->on('roles');
@@ -27,7 +28,7 @@ class CreateUsersTable extends Migration
         });
 
         DB::table('users')->insert([
-            'usuario'  => 'luis',
+            'nombre_usuario'  => 'luis',
             'idrol'  => '1',
             'password'  => bcrypt('123456'),
         ]);

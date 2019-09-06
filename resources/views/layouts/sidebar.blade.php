@@ -1,5 +1,4 @@
-       <!-- ========== Left Sidebar Start ========== -->
-       <div class="left side-menu">
+<div class="left side-menu">
                 <div class="slimscroll-menu" id="remove-scroll">
 
                     <!--- Sidemenu -->
@@ -7,17 +6,17 @@
                         <!-- Left Menu Start -->
                         <ul class="metismenu" id="side-menu">
                             <li>
-                                <a href="index" class="waves-effect">
-                                    <i class="ti-dashboard"></i> <span> Dashboard </span>
-                                </a>
+                                
+                            <router-link to="dashboard" class="waves-effect"><i class="ti-dashboard"></i><span> Dashboard </span></router-link>
+                                
                             </li>
 
                             <li>
-                                <a href="crear-canal" class="waves-effect"><i class="ti-desktop"></i><span> Canales </span></a>
+                            <router-link to="/canal/subir" class="waves-effect"><i class="ti-desktop"></i><span> Canales </span></router-link>
                             </li>
 
                             <li>
-                                <a href="uploads" class="waves-effect"><i class="ti-cloud-up "></i><span> Subir Vídeos </span></a>
+                            <router-link to="/playlist/subir" class="waves-effect"><i class="ti-cloud-up "></i><span> Subir Vídeos </span></router-link>
                             </li>
 
                             <li>
@@ -29,15 +28,17 @@
                             </li>
 
                             <li>
-                                <a href="programacion" class="waves-effect"><i class="ti-calendar"></i><span> Programación </span></a>
+                                
+                            <router-link to="/playlist/crear" class="waves-effect"><i class="ti-calendar"></i><span> Programación </span></router-link>
                             </li>
 
                             <li>
-                                    <a href="listas-reproduccion" class="waves-effect"><i class="ti-list"></i><span> Listas de Reproducción </span></a>
+                            <router-link to="/playlist/listar" class="waves-effect"><i class="ti-calendar"></i><span> Lista Reproduccion</span></router-link>
+                                  
                             </li>
                             
                             <li>
-                                <a href="estadisticas" class="waves-effect"><i class="ti-pie-chart"></i><span> Estadísticas </span></a>
+                            <router-link to="/estadistica" class="waves-effect"><i class="ti-pie-chart"></i><span> Estadísticas </span></a>
                             </li>
 
                             

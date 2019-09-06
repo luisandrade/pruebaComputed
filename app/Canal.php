@@ -10,5 +10,10 @@ class Canal extends Model
 
     protected $fillable = [ 'nombre_canal'];
 
+    public function playlist()
+    {
+        return $this->hasMany('App\Playlist');
+    }
+
 
 }

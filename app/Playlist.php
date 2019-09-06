@@ -9,7 +9,9 @@ class Playlist extends Model
     protected $table="playlist";
 
     protected $fillable = [
+        'id',
         'id_usuario',
+        'id_canal',
         'nombre_playlist',
         'hora_inicio',
         'fecha_emision',
@@ -21,4 +23,13 @@ class Playlist extends Model
      {
          return $this->belongsTo('App\User');
      }
+
+         public function canal()
+     {
+         return $this->belongsTo('App\Canal');
+     }
+     public function getRouteKeyName(){
+         return 'url';
+     }
+     
 }

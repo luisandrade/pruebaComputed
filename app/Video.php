@@ -13,7 +13,11 @@ class Video extends Model
         'id_canal',
         'length',
         'nombre_video'
-    
-    
     ];
+    
+    protected $cast = [
+        'lenght' => 'hh:mm:ss'
+    ];
+    
+    
 }

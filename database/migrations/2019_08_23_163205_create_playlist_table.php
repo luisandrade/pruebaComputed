@@ -18,6 +18,9 @@ class CreatePlaylistTable extends Migration
 
             $table->integer('id_usuario')->unsigned();
             $table->foreign('id_usuario')->references('id')->on('users');
+
+            $table->integer('id_canal')->unsigned();
+            $table->foreign('id_canal')->references('id')->on('canales');
             
             $table->string('nombre_playlist');
             $table->time('hora_inicio');

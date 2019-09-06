@@ -4133,6 +4133,21 @@ color: #7c848d;
   margin:5px 10px 0 10px;
 }
 
+.my-custom-scrollbar {
+  position: relative;
+  height: 259px;
+  overflow: auto;
+  }
+  .table-wrapper-scroll-y {
+  display: block;
+  }
+
+  .dataTables_filter{
+    display: block;
+    margin-left: 230px;
+  }
+
+
 @media (min-width: 768px) {
   .enlarged .slimscroll-menu {
     overflow: inherit !important;

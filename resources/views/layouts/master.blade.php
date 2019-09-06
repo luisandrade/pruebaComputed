@@ -12,25 +12,37 @@
         @include('layouts.head')
     </head>
 <body>
-    
+    <div id="app">
         <div id="wrapper">
             @include('layouts.header')
             @include('layouts.sidebar')
             <div class="content-page">  
                 <div class="content">
                     <div class="container-fluid">
-                    @include('layouts.settings')
-                    @yield('content')
-                    </div> 
-                </div> 
-            </div> 
+                    @include('layouts.settings')    
+                
+                    <transition name="fade"> 
+                        <router-view></router-view>
+                    </transition>
+           
+                    </div>
+                </div>
+            </div>
         </div>
+    </div>
     
             @include('layouts.footer')  
-         
-        
             @include('layouts.footer-script')  
         
-       
+            <script src="{{ URL::asset('plugins/jquery-steps/jquery.steps.min.js') }}"></script>
     </body>
+
+    <style>
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
+</style>
 </html>

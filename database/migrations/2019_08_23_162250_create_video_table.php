@@ -17,12 +17,13 @@ class CreateVideoTable extends Migration
             $table->increments('id');
         
 
-            $table->integer('id_canal')->unsigned();
-            $table->foreign('id_canal')->references('id')->on('canales');
+            $table->integer('id_categoria')->unsigned();
+            $table->foreign('id_categoria')->references('id')->on('categoria_video');
 
             $table->string('nombre_video');
-            $table->integer('lenght');
+            $table->time('lenght');
         });
+        DB::table('video')->insert(['id'=>'3','id_categoria'=>'1', 'nombre_video'=>'Luis TV', 'lenght' => '22:30:34']);
     }
 
     /**

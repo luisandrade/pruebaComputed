@@ -1,37 +1,74 @@
-
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
-
 require('./bootstrap');
+
 
 window.Vue = require('vue');
 
-/**
- * The following block of code may be used to automatically register your
- * Vue components. It will recursively scan this directory for the Vue
- * components and automatically register them with their "basename".
- *
- * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
- */
+import Vue from 'vue';
+import VueRouter from 'vue-router';
 
-// const files = require.context('./', true, /\.vue$/i)
-// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
-
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-Vue.component('example-second', require('./components/ExampleComponent2.vue').default);
-Vue.component('prueba-component', require('./components/PruebaComponent.vue').default);
+Vue.use(VueRouter);
 
 
+let router = new VueRouter({
+    mode: 'history',
+    routes: [
+        {
+            path:'/playlist/listar',
+            name:'playlist_listar',
+            component: require('./components/ListaReproduccionComponent').default
+        },
+        {
+            path:'/edit/:id',
+            name:'playlist_editar',
+            component: require('./components/EditarReproduccionComponent').default
+        },
+        {
+            path:'/playlist/crear',
+            name:'playlist_crear',
+            component: require('./components/CrearReproduccionComponent').default
+        },
+        {
+            path:'/playlist/subir',
+            name:'playlist_subir',
+            component: require('./components/SubirReproduccionComponent').default
+        },
+        {
+            path:'/canal/subir',
+            name:'canal_subir',
+            component: require('./components/CrearCanalComponent').default
+        },
+        {
+            path:'/dashboard',
+            name:'dashboard',
+            component: require('./components/DashboardComponent').default
+        },
+        {
+            path:'/estadistica',
+            name:'estadistica',
+            component: require('./components/EstadisticaComponent').default
+        },
+        // {
+        //     path:'*',
+        //     name:'dashboard',
+        //     component: require('./components/DashboardComponent').default
+        // },
+       
+    ]
+    
+})
 
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
+Vue.component('master', require('./components/MasterComponent.vue').default);
+Vue.component('dashboard', require('./components/DashboardComponent.vue').default);
+Vue.component('lista-playlist', require('./components/ListaReproduccionComponent.vue').default);
+Vue.component('editar-playlist', require('./components/EditarReproduccionComponent.vue').default);
+Vue.component('crear-playlist', require('./components/CrearReproduccionComponent.vue').default);
+Vue.component('subir-playlist', require('./components/SubirReproduccionComponent.vue').default);
+Vue.component('crear-canal', require('./components/CrearCanalComponent.vue').default);
+Vue.component('estadistica', require('./components/EstadisticaComponent.vue').default);
+
+
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    router
 });

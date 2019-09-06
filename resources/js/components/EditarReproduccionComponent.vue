@@ -1,27 +1,11 @@
-@extends('layouts.master')
+<template>
 
-@section('css')
-<!-- summernote -->
-<link rel="stylesheet" href="{{ URL::asset('plugins/summernote/summernote-bs4.css') }}">
-@endsection
-
-@section('breadcrumb')
-<div class="col-sm-6">
-    <h4 class="page-title">Editar Lista</h4>
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="javascript:void(0);">Veltrix</a></li>
-        <li class="breadcrumb-item"><a href="javascript:void(0);">Forms</a></li>
-        <li class="breadcrumb-item active">Form Editors</li>
-    </ol>
-</div>
-@endsection
-
-@section('content')
-<div class="row">
+                                <div class="row">
                                     <div class="col-lg-5">
                                             <div class="card">
                                                     <div class="card-body">
-
+<h1>{{$route.params.id}}</h1>
+<h1></h1>
                                                                 <div class="btn-group m-b-15" role="group" aria-label="Basic example">
                                                                     <button type="button" class="btn btn-success"><i class="ti-plus"></i> Agregar Live</button>
                                                                     <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categorias</button>
@@ -93,37 +77,15 @@
                                                                         </thead>
                                                                         <tbody class="table-striped">
                                                                             <tr>
-                                                                                <th scope="row">00:00:00 am</th>
-                                                                                <td>00:40:00 am</td>
-                                                                                <td>Caballeros-del-zodiaco-ep1-t2</td>
+                                                                                <th scope="row">{{playlist.hora_inicio}}</th>
+                                                                                <td>
+                                                                                <input v-model="playlist.hora_final" class="form-control">
+                                                                                
+                                                                                </td>
+                                                                                <td>{{playlist.nombre_playlist}}</td>
                                                                                 <td>00:20:00</td>
                                                                                 <td><center><i class="ion ion-md-close-circle "></i></center></td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                    <th scope="row">00:20:00 am</th>
-                                                                                    <td>00:40:00 am</td>
-                                                                                    <td>Caballeros-del-zodiaco-ep1-t2</td>
-                                                                                    <td>00:20:00</td>
-                                                                                    <td><center><i class="ion ion-md-close-circle "></i></center></td>
-                                                                                </tr>
-                                                                                <tr>
-                                                                                        <th scope="row">00:40:00 am</th>
-                                                                                        <td>01:20:00 am</td>
-                                                                                        <td>LIVE EVENT</td>
-                                                                                        <td>01:00:00</td>
-                                                                                        <td><center><i class="ion ion-md-close-circle "></i></center></td>
-                                                                                    </tr>
-                                     
-                            
-                                                                                <tr>
-                                                                                        <th scope="row">01:20:00 am</th>
-                                                                                        <td>01:40:00 am</td>
-                                                                                        <td>Caballeros-del-zodiaco-ep1-t2</td>
-                                                                                        <td>00:20:00</td>
-                                                                                        <td><center><i class="ion ion-md-close-circle"></i></center></td>
-                                                                                    </tr>
-
-
+                                                                            </tr> 
                                                                         </tbody>
                                                                         <tfoot>
                                                                             <tr>
@@ -162,14 +124,26 @@
                                     </div>
                                     </div>
                             </div>
+                          </div>  
+                    </template>
 
-                 
-@endsection
+<script>
+export default {
+    data(){
+        return{
+            playlist: {}
+        }
+    },
+    mounted(){
+        //Campuramos la id del sistema de vou-route dentro de $route y parametros
+        axios.get('/edit/' + this.$route.params.id).then(response =>{
+           console.log(response);
+            this.playlist = response.data;
 
-@section('script')
-<!--tinymce js-->
-<script src="{{ URL::asset('plugins/tinymce/tinymce.min.js') }}"></script>
-<!--Summernote js-->
-<script src="{{ URL::asset('plugins/summernote/summernote-bs4.min.js') }}"></script>
-<script src="{{ URL::asset('assets/pages/form-editors.int.js') }}"></script>
-@endsection
+        }).catch(error =>{
+            console.log(error.response.data);
+        })
+    }
+}
+</script>
+

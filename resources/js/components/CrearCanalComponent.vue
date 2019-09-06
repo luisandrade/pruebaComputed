@@ -1,18 +1,5 @@
-@extends('layouts.master')
-
-@section('breadcrumb')
-<div class="col-sm-6">
-    <h4 class="page-title">Crear Canal</h4>
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="javascript:void(0);">Dashboard</a></li>
-        <li class="breadcrumb-item"><a href="javascript:void(0);">Canales</a></li>
-        <li class="breadcrumb-item active">Crear Canal</li>
-    </ol>
-</div>
-@endsection
-
-@section('content')
-   
+<template>
+    
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="card">
@@ -113,29 +100,5 @@
                                     </div>
                                 </div>
                             </div> <!-- end col -->
-                        </div> <!-- end row -->              
-@endsection
-
-@section('script')
-<!-- Parsley js -->
-<script src="{{ URL::asset('plugins/parsleyjs/parsley.min.js') }}"></script>
-
-<!-- Plugins js -->
-<script src="{{ URL::asset('plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js') }}"></script>
-<script src="{{ URL::asset('plugins/bootstrap-datepicker/js/bootstrap-datepicker.js') }}"></script>
-<script src="{{ URL::asset('plugins/select2/js/select2.min.js') }}"></script>
-<script src="{{ URL::asset('plugins/bootstrap-maxlength/bootstrap-maxlength.min.js') }}"></script>
-<script src="{{ URL::asset('plugins/bootstrap-filestyle/js/bootstrap-filestyle.min.js') }}"></script>
-<script src="{{ URL::asset('plugins/bootstrap-touchspin/js/jquery.bootstrap-touchspin.min.js') }}"></script>
-<!-- Plugins Init js -->
-@endsection
-
-
-
-@section('script-bottom')
-<script>
-    $(document).ready(function() {
-         $('form').parsley();
-    });
-</script>
-@endsection
+                        </div> <!-- end row -->     
+</template>
