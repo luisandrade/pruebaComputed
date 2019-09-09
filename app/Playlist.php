@@ -27,9 +27,5 @@ class Playlist extends Model
          public function canal()
      {
          return $this->belongsTo('App\Canal');
-     }
-     public function getRouteKeyName(){
-         return 'url';
-     }
-     
+     }    
 }

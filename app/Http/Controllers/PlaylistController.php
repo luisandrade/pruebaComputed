@@ -91,12 +91,32 @@ class PlaylistController extends Controller
         return  $playlist;
         //return view('edit');
     }
-    public function prueba($id){
-            $playlist = Playlist::find($id)
-            ->join('detalle_playlist', 'detalle_playlist.id_playlist', '=', 'playlist.id')
-            ->join('video', 'video.id', '=', 'detalle_playlist.id_video')
-            ->select('detalle_playlist.*')->where('playlist.id',$id)->get();
+    public function mostrarDetallePlaylist($id){
+        $playlist_detalle = Playlist::find($id)
+        ->join('detalle_playlist', 'detalle_playlist.id_playlist', '=', 'playlist.id')
+        ->join('video', 'video.id', '=', 'detalle_playlist.id_video')
+        ->select('detalle_playlist.*','video.*')->where('playlist.id',$id)->get();
+        return ['playlist_detalle' => $playlist_detalle];
+    }
+    public function mostrarPlaylist($id){
+        $playlist = Playlist::find($id)
+        ->join('canales','playlist.id_canal','=','canales.id')
+        ->join('users','playlist.id_usuario','=','users.id')
+        ->select('playlist.*','canales.*','users.*')->where('playlist.id', $id)->get();
+        return ['playlist' => $playlist];
+    }
+    public function mostrarCanal($id){
+        $playlist_canal = Playlist::find($id)
+        ->join('canales','playlist.id_canal','=','canales.id')
+        ->join('users','playlist.id_usuario','=','users.id')
+        ->select('playlist.*','canales.*','users.*')->where('playlist.id', $id)->get();
+        return ['playlist_canal' => $playlist_canal];
 
-            return $playlist;
+    }public function mostrarUsuario($id){
+        $playlist_usuario = Playlist::find($id)
+        ->join('users','playlist.id_usuario','=','users.id')
+        ->select('users.*','playlist.*')->where('playlist.id', $id)->get();
+        return ['playlist_usuario' => $playlist_usuario];
+
     }
 }

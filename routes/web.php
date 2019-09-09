@@ -24,6 +24,9 @@ Route::get('/', function () {
   route::get('/playlist/listarPlaylist','PlaylistController@index')->name('playlist');
   route::post('/playlist/registrar','PlaylistController@store')->name('playlist/registrar');
   route::delete('/playlist/{id}','PlaylistController@delete');
-  route::get('edit/{id}','PlaylistController@edit')->name('playlist_edit');
-  route::get('edit/prueba/{id}','PlaylistController@prueba')->name('prueba_edit');
+  route::get('edit/mostrar/playlist/lista/{id}','PlaylistController@mostrarPlaylist');
+  route::get('edit/mostrar/detalle_playlist/lista/{id}','PlaylistController@mostrarDetallePlaylist');
+  route::get('edit/edit/mostrar/detalle_playlist/lista/canal/{id}','PlaylistController@mostrarCanal');
+  route::get('edit/edit/mostrar/detalle_playlist/lista/usuario/{id}','PlaylistController@mostrarUsuario');
 
+ 

@@ -2136,7 +2136,7 @@ var message = ["vue.draggable", "draggable", "component", "for", "vue.js 2.0", "
       });
     },
     computeSubTotal: function computeSubTotal(item) {
-      //formatPrice is removed here because its not defined in the question
+      //formatPrice is removed here because its not defined in the questions
       this.subTotalAcum = this.subTotalAcum + item.testduration;
       return this.subTotalAcum;
     },
@@ -2205,6 +2205,11 @@ var message = ["vue.draggable", "draggable", "component", "for", "vue.js 2.0", "
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuedraggable__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuedraggable */ "./node_modules/vuedraggable/dist/vuedraggable.common.js");
+/* harmony import */ var vuedraggable__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vuedraggable__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vue_sweetalert2__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-sweetalert2 */ "./node_modules/vue-sweetalert2/dist/index.js");
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -2334,22 +2339,247 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+var moment = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+
+
+Vue.use(vue_sweetalert2__WEBPACK_IMPORTED_MODULE_1__["default"]);
+var message = ["vue.draggable", "draggable", "component", "for", "vue.js 2.0", "based", "on", "Sortablejs"];
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
-    return {
-      playlist: {}
-    };
+    var _ref;
+
+    return _ref = {
+      id_video: 0,
+      id_usuario: 0,
+      id_canal: 0,
+      nombre_video: '',
+      nombre_playlist: '',
+      arrayVideos: [],
+      arrayPlaylist: [],
+      arrayCanales: [],
+      arrayUsers: [],
+      subTotalAcum: 0,
+      subInitAcum: 0,
+      hora_inicio: 0,
+      testduration: 0,
+      testinit: 0,
+      totalParcial: 0
+    }, _defineProperty(_ref, "hora_inicio", 0), _defineProperty(_ref, "fecha_emision", 0), _ref;
+  },
+  methods: {
+    mostrarDetallePlaylist: function mostrarDetallePlaylist() {
+      var _this = this;
+
+      //Capturamos la id del sistema de vou-route dentro de $route y parametros
+      var url = "mostrar/detalle_playlist/lista/";
+      axios.get(url + this.$route.params.id).then(function (response) {
+        var respuesta = response.data;
+        _this.arrayPlaylist = respuesta.playlist_detalle;
+      })["catch"](function (error) {
+        console.log(error.response.data);
+      });
+    },
+    mostrarPlaylist: function mostrarPlaylist() {
+      var _this2 = this;
+
+      //Capturamos la id del sistema de vou-route dentro de $route y parametros
+      var arrayTemporal = [];
+      var url = "mostrar/playlist/lista/";
+      axios.get(url + this.$route.params.id).then(function (response) {
+        var respuesta = response.data;
+        arrayTemporal = respuesta.playlist;
+        _this2.nombre_playlist = arrayTemporal[0]['nombre_playlist'];
+        _this2.hora_inicio = arrayTemporal[0]['hora_inicio'];
+        _this2.fecha_emision = arrayTemporal[0]['fecha_emision'];
+        _this2.id_usuario = arrayTemporal[0]['id_usuario'];
+        _this2.id_canal = arrayTemporal[0]['id_canal'];
+      })["catch"](function (error) {
+        console.log(error.response.data);
+      });
+    },
+    selectUsuarios: function selectUsuarios() {
+      var esto = this;
+      var url = "/usuarios/selectUsuarios";
+      axios.get(url).then(function (response) {
+        console.log(response);
+        var respuesta = response.data;
+        esto.arrayUsers = respuesta.usuarios;
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    selectCanales: function selectCanales() {
+      var esto = this;
+      var url = "/canales/selectCanales";
+      axios.get(url).then(function (response) {
+        console.log(response);
+        var respuesta = response.data;
+        esto.arrayCanales = respuesta.canales;
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    agregarDetalleVideo: function agregarDetalleVideo() {
+      var data = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+      this.arrayPlaylist.push({
+        id_video: data["id"],
+        nombre_video: data["nombre_video"],
+        // convierte la hora de video de entrada a segundos
+        testduration: moment(data["lenght"], 'HH:mm:ss: A').diff(moment().startOf('day'), 'seconds')
+      });
+    },
+    listarVideo: function listarVideo() {
+      var esto = this;
+      var url = "/videos/listarVideos";
+      axios.get(url).then(function (response) {
+        console.log(response);
+        var respuesta = response.data;
+        esto.arrayVideos = respuesta.videos;
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    eliminarDetalleVideo: function eliminarDetalleVideo(index) {
+      var esto = this;
+      esto.arrayPlaylist.splice(index, 1);
+    },
+    sort: function sort() {
+      this.list = this.list.sort(function (a, b) {
+        return a.order - b.order;
+      });
+    },
+    computeSubTotal: function computeSubTotal(item) {
+      //formatPrice is removed here because its not defined in the question
+      this.subTotalAcum = this.subTotalAcum + item.testduration;
+      return this.subTotalAcum;
+    },
+    parseToHour: function parseToHour(seconds) {
+      return moment().startOf('day').seconds(seconds).format('H:mm:ss');
+    },
+    total: function total() {
+      return this.subTotalAcum;
+    }
+  },
+  computed: {
+    calcularParcialLengthVideo: function calcularParcialLengthVideo() {
+      var resultado = 0;
+
+      for (var i = 0; i < this.arrayDetallePlaylist.length; i++) {
+        resultado = resultado + parseInt(this.arrayDetallePlaylist[i].lenght);
+      }
+
+      return resultado;
+    },
+    itemsWithSubTotal: function itemsWithSubTotal() {
+      var _this3 = this;
+
+      //var itemsx = [];
+      //  console.log(this.hora_inicio); 
+      //  console.log(moment(this.hora_inicio, 'HH:mm:ss: A').diff(moment().startOf('day'), 'seconds'));
+      this.subTotalAcum = moment(this.hora_inicio, 'HH:mm:ss: A').diff(moment().startOf('day'), 'seconds'); //this.subTotalAcum = moment(this.hora_inicio, 'HH:mm:ss A').diff(moment().startOf('day'), 'seconds');
+      //this.subTotalAcum=this.hora_inicio;
+      //console.log(this.arrayDetallePlaylist)
+      //itemsx = this.arrayDetallePlaylist.map(item1 => ({item1,subtotal: this.computeSubTotal(item1),subinit: this.computeInit(item1)}))
+      //this.arrayDetallePlaylist.testinit = 22;
+      //console.log(itemsx)
+
+      return this.arrayPlaylist.map(function (item1) {
+        return {
+          item1: item1,
+          subinit: _this3.subTotalAcum,
+          subtotal: _this3.computeSubTotal(item1)
+        };
+      });
+    },
+    dragOptions: function dragOptions() {
+      return {
+        animation: 200,
+        group: "description",
+        disabled: false,
+        ghostClass: "ghost"
+      };
+    }
   },
   mounted: function mounted() {
-    var _this = this;
-
-    //Campuramos la id del sistema de vou-route dentro de $route y parametros
-    axios.get('/edit/' + this.$route.params.id).then(function (response) {
-      console.log(response);
-      _this.playlist = response.data;
-    })["catch"](function (error) {
-      console.log(error.response.data);
-    });
+    this.listarVideo();
+    this.mostrarDetallePlaylist();
+    this.mostrarPlaylist();
+    this.selectUsuarios();
+    this.selectCanales();
   }
 });
 
@@ -61811,7 +62041,6 @@ var render = function() {
                   staticClass: "form-control",
                   attrs: {
                     type: "text",
-                    value: "",
                     placeholder: "Lista de Reproducción",
                     id: "example-text-input"
                   },
@@ -62517,13 +62746,243 @@ var render = function() {
     _c("div", { staticClass: "col-lg-5" }, [
       _c("div", { staticClass: "card" }, [
         _c("div", { staticClass: "card-body" }, [
-          _c("h1", [_vm._v(_vm._s(_vm.$route.params.id))]),
-          _vm._v(" "),
-          _c("h1"),
-          _vm._v(" "),
-          _vm._m(0),
-          _vm._v(" "),
-          _vm._m(1)
+          _c("form", { attrs: { action: "#" } }, [
+            _c("div", { staticClass: "form-group row" }, [
+              _c(
+                "label",
+                {
+                  staticClass: "col-sm-4 col-form-label",
+                  attrs: { for: "example-text-input" }
+                },
+                [_vm._v("Nombre")]
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-sm-8" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.nombre_playlist,
+                      expression: "nombre_playlist"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { type: "text", id: "example-text-input" },
+                  domProps: { value: _vm.nombre_playlist },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.nombre_playlist = $event.target.value
+                    }
+                  }
+                })
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-group row" }, [
+              _c(
+                "label",
+                {
+                  staticClass: "col-sm-4 col-form-label",
+                  attrs: { for: "example-text-input" }
+                },
+                [_vm._v("Usuario")]
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-sm-8" }, [
+                _c("div", { staticClass: "form-group" }, [
+                  _c(
+                    "select",
+                    {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.id_usuario,
+                          expression: "id_usuario"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      on: {
+                        change: function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.id_usuario = $event.target.multiple
+                            ? $$selectedVal
+                            : $$selectedVal[0]
+                        }
+                      }
+                    },
+                    [
+                      _c("option", { attrs: { value: "0", disabled: "" } }, [
+                        _vm._v("Seleccione")
+                      ]),
+                      _vm._v(" "),
+                      _vm._l(_vm.arrayUsers, function(usuarios) {
+                        return _c("option", {
+                          key: usuarios.id,
+                          domProps: {
+                            value: usuarios.id,
+                            textContent: _vm._s(usuarios.nombre_usuario)
+                          }
+                        })
+                      })
+                    ],
+                    2
+                  )
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-group row" }, [
+              _c(
+                "label",
+                {
+                  staticClass: "col-sm-4 col-form-label",
+                  attrs: { for: "example-text-input" }
+                },
+                [_vm._v("Canal")]
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-sm-8" }, [
+                _c(
+                  "select",
+                  {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.id_canal,
+                        expression: "id_canal"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    on: {
+                      change: function($event) {
+                        var $$selectedVal = Array.prototype.filter
+                          .call($event.target.options, function(o) {
+                            return o.selected
+                          })
+                          .map(function(o) {
+                            var val = "_value" in o ? o._value : o.value
+                            return val
+                          })
+                        _vm.id_canal = $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      }
+                    }
+                  },
+                  [
+                    _c("option", { attrs: { value: "0", disabled: "" } }, [
+                      _vm._v("Seleccione")
+                    ]),
+                    _vm._v(" "),
+                    _vm._l(_vm.arrayCanales, function(canales) {
+                      return _c("option", {
+                        key: canales.id,
+                        domProps: {
+                          value: canales.id,
+                          textContent: _vm._s(canales.nombre_canal)
+                        }
+                      })
+                    })
+                  ],
+                  2
+                )
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-group row" }, [
+              _c(
+                "label",
+                {
+                  staticClass: "col-sm-4 col-form-label",
+                  attrs: { for: "example-time-input" }
+                },
+                [_vm._v("Hora Inicio")]
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-sm-8" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.hora_inicio,
+                      expression: "hora_inicio"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: {
+                    type: "time",
+                    step: "1",
+                    value: "13:45:00",
+                    id: "example-time-input"
+                  },
+                  domProps: { value: _vm.hora_inicio },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.hora_inicio = $event.target.value
+                    }
+                  }
+                })
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-group row" }, [
+              _c(
+                "label",
+                {
+                  staticClass: "col-sm-4 col-form-label",
+                  attrs: { for: "example-date-input" }
+                },
+                [_vm._v("Emisión")]
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-sm-8" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.fecha_emision,
+                      expression: "fecha_emision"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: {
+                    type: "date",
+                    value: "2011-08-19",
+                    id: "example-date-input"
+                  },
+                  domProps: { value: _vm.fecha_emision },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.fecha_emision = $event.target.value
+                    }
+                  }
+                })
+              ])
+            ]),
+            _vm._v(" "),
+            _vm._m(0)
+          ])
         ])
       ])
     ]),
@@ -62531,60 +62990,46 @@ var render = function() {
     _c("div", { staticClass: "col-lg-7" }, [
       _c("div", { staticClass: "card" }, [
         _c("div", { staticClass: "card-body" }, [
+          _vm._m(1),
+          _vm._v(" "),
           _c("div", { staticClass: "table-striped" }, [
             _c("table", { staticClass: "table table-sm m-10 table-striped" }, [
               _vm._m(2),
               _vm._v(" "),
-              _c("tbody", { staticClass: "table-striped" }, [
-                _c("tr", [
-                  _c("th", { attrs: { scope: "row" } }, [
-                    _vm._v(_vm._s(_vm.playlist.hora_inicio))
-                  ]),
-                  _vm._v(" "),
-                  _c("td", [
-                    _c("input", {
-                      directives: [
+              _c(
+                "tbody",
+                { staticClass: "table-striped" },
+                _vm._l(_vm.arrayVideos, function(videos) {
+                  return _c("tr", { key: videos.id }, [
+                    _c("td", {
+                      domProps: { textContent: _vm._s(videos.nombre_video) }
+                    }),
+                    _vm._v(" "),
+                    _c("td", {
+                      domProps: { textContent: _vm._s(videos.lenght) }
+                    }),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c(
+                        "button",
                         {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.playlist.hora_final,
-                          expression: "playlist.hora_final"
-                        }
-                      ],
-                      staticClass: "form-control",
-                      domProps: { value: _vm.playlist.hora_final },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
+                          staticClass:
+                            "btn btn-success btn-sm form-control btnagregar",
+                          on: {
+                            click: function($event) {
+                              return _vm.agregarDetalleVideo(videos)
+                            }
                           }
-                          _vm.$set(
-                            _vm.playlist,
-                            "hora_final",
-                            $event.target.value
-                          )
-                        }
-                      }
-                    })
-                  ]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(_vm.playlist.nombre_playlist))]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v("00:20:00")]),
-                  _vm._v(" "),
-                  _c(
-                    "td",
-                    [
-                      _c("center", [
-                        _c("i", { staticClass: "ion ion-md-close-circle " })
-                      ])
-                    ],
-                    1
-                  )
-                ])
-              ]),
+                        },
+                        [_c("i", { staticClass: "ti-plus" })]
+                      )
+                    ])
+                  ])
+                }),
+                0
+              ),
               _vm._v(" "),
-              _vm._m(3)
+              _c("tfoot")
             ])
           ]),
           _vm._v(" "),
@@ -62596,9 +63041,157 @@ var render = function() {
             },
             [
               _vm._v(
-                "\n                                                                            Guardar Lista\n                                                                        "
+                "\r\n                                                                            Guardar Lista\r\n                                                                        "
               )
             ]
+          ),
+          _vm._v(" "),
+          _vm._m(3)
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "card" }, [
+        _c("div", { staticClass: "card-body" }, [
+          _c("div", { staticClass: "table-striped" }, [
+            _c(
+              "table",
+              { staticClass: "table table-sm m-10 table-striped" },
+              [
+                _c("thead", [
+                  _c("tr", [
+                    _c("th", [_vm._v("ID")]),
+                    _vm._v(" "),
+                    _c("th", [_vm._v("Hora de Inicio")]),
+                    _vm._v(" "),
+                    _c("th", [_vm._v("Hora Finaliza")]),
+                    _vm._v(" "),
+                    _c("th", [_vm._v("Nombre Video")]),
+                    _vm._v(" "),
+                    _c("th", [_vm._v("Duración")]),
+                    _vm._v(" "),
+                    _c("th", [_c("center", [_vm._v("Borrar")])], 1)
+                  ])
+                ]),
+                _vm._v(" "),
+                _c(
+                  "draggable",
+                  _vm._b(
+                    {
+                      attrs: { tag: "tbody" },
+                      on: {
+                        start: function($event) {
+                          _vm.drag = true
+                        },
+                        end: function($event) {
+                          _vm.drag = false
+                        }
+                      },
+                      model: {
+                        value: _vm.arrayPlaylist,
+                        callback: function($$v) {
+                          _vm.arrayPlaylist = $$v
+                        },
+                        expression: "arrayPlaylist"
+                      }
+                    },
+                    "draggable",
+                    _vm.dragOptions,
+                    false
+                  ),
+                  _vm._l(_vm.itemsWithSubTotal, function(
+                    playlist_detalle,
+                    index
+                  ) {
+                    return _c("tr", { key: index }, [
+                      _c("td", { attrs: { scope: "row" } }, [
+                        _vm._v(_vm._s(playlist_detalle.item1.id_video))
+                      ]),
+                      _vm._v(" "),
+                      _c("td", [
+                        _vm._v(
+                          _vm._s(_vm.parseToHour(playlist_detalle.subinit)) +
+                            " "
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(playlist_detalle.subtotal))]),
+                      _vm._v(" "),
+                      _c("td", [
+                        _vm._v(_vm._s(playlist_detalle.item1.nombre_video))
+                      ]),
+                      _vm._v(" "),
+                      _c("td", [
+                        _vm._v(_vm._s(playlist_detalle.item1.testduration))
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "td",
+                        [
+                          _c("center", [
+                            _c(
+                              "button",
+                              {
+                                staticClass:
+                                  "btn btn-danger waves-effect waves-light mx-auto",
+                                attrs: { type: "submit" },
+                                on: {
+                                  click: function($event) {
+                                    return _vm.eliminarDetalleVideo(index)
+                                  }
+                                }
+                              },
+                              [_c("i", { staticClass: "ti-close" })]
+                            )
+                          ])
+                        ],
+                        1
+                      )
+                    ])
+                  }),
+                  0
+                ),
+                _vm._v(" "),
+                _c("tfoot", [
+                  _c("tr", [
+                    _c("td"),
+                    _vm._v(" "),
+                    _c("td"),
+                    _vm._v(" "),
+                    _c("td"),
+                    _vm._v(" "),
+                    _c("td"),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c("i", { staticClass: "ion ion-md-clock" }),
+                      _vm._v(
+                        "\r\n                    " +
+                          _vm._s(
+                            (_vm.totalParcial = _vm.parseToHour(_vm.total()))
+                          ) +
+                          "\r\n                  "
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("td")
+                  ])
+                ])
+              ],
+              1
+            )
+          ]),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-primary waves-effect waves-light mr-1",
+              attrs: { type: "submit" },
+              on: {
+                click: function($event) {
+                  return _vm.registrarPlaylist()
+                }
+              }
+            },
+            [_c("i", { staticClass: "ti-save" }), _vm._v(" Guardar Lista")]
           ),
           _vm._v(" "),
           _vm._m(4)
@@ -62614,6 +63207,42 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group row col-sm-12" }, [
+      _c(
+        "label",
+        { staticClass: "col-form-label", attrs: { for: "example-time-input" } },
+        [_vm._v("Loop")]
+      ),
+      _vm._v(" "),
+      _c("input", {
+        attrs: { type: "checkbox", id: "switch7", switch: "info", checked: "" }
+      }),
+      _vm._v(" "),
+      _c("label", {
+        staticClass: "loop",
+        attrs: { for: "switch7", "data-on-label": "Si", "data-off-label": "No" }
+      }),
+      _vm._v(" "),
+      _c(
+        "label",
+        { staticClass: "col-form-label", attrs: { for: "example-time-input" } },
+        [_vm._v("AutoStart")]
+      ),
+      _vm._v(" "),
+      _c("input", {
+        attrs: { type: "checkbox", id: "switch8", switch: "info", checked: "" }
+      }),
+      _vm._v(" "),
+      _c("label", {
+        staticClass: "loop",
+        attrs: { for: "switch8", "data-on-label": "Si", "data-off-label": "No" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
     return _c(
       "div",
       {
@@ -62624,19 +63253,19 @@ var staticRenderFns = [
         _c(
           "button",
           { staticClass: "btn btn-success", attrs: { type: "button" } },
-          [_c("i", { staticClass: "ti-plus" }), _vm._v(" Agregar Live")]
+          [
+            _c("i", { staticClass: "ion ion-md-add-circle" }),
+            _vm._v(
+              " Agregar Live\r\n                                                            "
+            )
+          ]
         ),
         _vm._v(" "),
         _c(
           "button",
           {
             staticClass: "btn btn-primary dropdown-toggle",
-            attrs: {
-              type: "button",
-              "data-toggle": "dropdown",
-              "aria-haspopup": "true",
-              "aria-expanded": "false"
-            }
+            attrs: { type: "submit" }
           },
           [_vm._v("Categorias")]
         ),
@@ -62644,16 +63273,19 @@ var staticRenderFns = [
         _c(
           "div",
           {
-            staticClass: "dropdown-menu",
-            attrs: { "aria-labelledby": "btnGroupVerticalDrop1" }
+            staticClass: "dataTables_filter m-t-10",
+            attrs: { id: "DataTables_Table_0_filter" }
           },
           [
-            _c("a", { staticClass: "dropdown-item", attrs: { href: "#" } }, [
-              _vm._v("Dropdown link")
-            ]),
-            _vm._v(" "),
-            _c("a", { staticClass: "dropdown-item", attrs: { href: "#" } }, [
-              _vm._v("Dropdown link")
+            _c("label", [
+              _c("input", {
+                staticClass: "form-control form-control-sm",
+                attrs: {
+                  type: "videos",
+                  placeholder: "Buscar Vídeos",
+                  "aria-controls": "DataTables_Table_0"
+                }
+              })
             ])
           ]
         )
@@ -62664,90 +63296,13 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", {}, [
-      _c("table", { staticClass: "table table-sm m-0 table-striped" }, [
-        _c("thead", [
-          _c("tr", [
-            _c("th", [_vm._v("Tiempo")]),
-            _vm._v(" "),
-            _c("th", [_vm._v("Nombre Video")]),
-            _vm._v(" "),
-            _c("th")
-          ])
-        ]),
-        _vm._v(" "),
-        _c("tbody", [
-          _c("tr", [
-            _c("th", { attrs: { scope: "row" } }, [_vm._v("00:20:00")]),
-            _vm._v(" "),
-            _c("td", [_vm._v("Caballeros-del-zodiaco-ep1-t2")]),
-            _vm._v(" "),
-            _c("td", [_c("i", { staticClass: "ion ion-md-add-circle " })])
-          ]),
-          _vm._v(" "),
-          _c("tr", [
-            _c("th", { attrs: { scope: "row" } }, [_vm._v("00:20:00")]),
-            _vm._v(" "),
-            _c("td", [_vm._v("Caballeros-del-zodiaco-ep1-t2")]),
-            _vm._v(" "),
-            _c("td", [_c("i", { staticClass: "ion ion-md-add-circle " })])
-          ]),
-          _vm._v(" "),
-          _c("tr", [
-            _c("th", { attrs: { scope: "row" } }, [_vm._v("00:20:00")]),
-            _vm._v(" "),
-            _c("td", [_vm._v("Caballeros-del-zodiaco-ep1-t2")]),
-            _vm._v(" "),
-            _c("td", [_c("i", { staticClass: "ion ion-md-add-circle" })])
-          ]),
-          _vm._v(" "),
-          _c("tr", [
-            _c("th", { attrs: { scope: "row" } }, [_vm._v("00:20:00")]),
-            _vm._v(" "),
-            _c("td", [_vm._v("Caballeros-del-zodiaco-ep1-t2")]),
-            _vm._v(" "),
-            _c("td", [_c("i", { staticClass: "ion ion-md-add-circle" })])
-          ])
-        ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
     return _c("thead", [
       _c("tr", [
-        _c("th", [_vm._v("Hora Inicio")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Hora Finaliza")]),
-        _vm._v(" "),
         _c("th", [_vm._v("Nombre de Vídeo")]),
         _vm._v(" "),
         _c("th", [_vm._v("Duración")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Borrar")])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("tfoot", [
-      _c("tr", [
-        _c("td"),
-        _vm._v(" "),
-        _c("td"),
-        _vm._v(" "),
-        _c("td"),
-        _vm._v(" "),
-        _c("td", [
-          _c("i", { staticClass: "ion ion-md-clock " }),
-          _vm._v(" 00:00:00")
-        ]),
-        _vm._v(" "),
-        _c("td")
+        _c("th", [_vm._v("Agregar")])
       ])
     ])
   },
@@ -62764,8 +63319,24 @@ var staticRenderFns = [
       [
         _c("i", { staticClass: "ti-control-play" }),
         _vm._v(
-          " Preview\n                                                                            "
+          " Preview\r\n                                                                            "
         )
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      {
+        staticClass: "btn btn-dark waves-effect waves-light mr-1",
+        attrs: { type: "submit" }
+      },
+      [
+        _c("i", { staticClass: "ti-control-play" }),
+        _vm._v(" Preview\r\n          ")
       ]
     )
   },
@@ -81673,10 +82244,6 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
     name: 'playlist_listar',
     component: __webpack_require__(/*! ./components/ListaReproduccionComponent */ "./resources/js/components/ListaReproduccionComponent.vue")["default"]
   }, {
-    path: '/edit/:id',
-    name: 'playlist_editar',
-    component: __webpack_require__(/*! ./components/EditarReproduccionComponent */ "./resources/js/components/EditarReproduccionComponent.vue")["default"]
-  }, {
     path: '/playlist/crear',
     name: 'playlist_crear',
     component: __webpack_require__(/*! ./components/CrearReproduccionComponent */ "./resources/js/components/CrearReproduccionComponent.vue")["default"]
@@ -81696,6 +82263,15 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
     path: '/estadistica',
     name: 'estadistica',
     component: __webpack_require__(/*! ./components/EstadisticaComponent */ "./resources/js/components/EstadisticaComponent.vue")["default"]
+  }, {
+    path: '/edit/:id',
+    name: 'playlist_editar',
+    component: __webpack_require__(/*! ./components/EditarReproduccionComponent */ "./resources/js/components/EditarReproduccionComponent.vue")["default"] // {
+    //     path:'*',
+    //     name:'dashboard',
+    //     component: require('./components/DashboardComponent').default
+    // },
+
   }]
 });
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('master', __webpack_require__(/*! ./components/MasterComponent.vue */ "./resources/js/components/MasterComponent.vue")["default"]);

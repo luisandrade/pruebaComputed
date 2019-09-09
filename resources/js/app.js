@@ -17,11 +17,7 @@ let router = new VueRouter({
             name:'playlist_listar',
             component: require('./components/ListaReproduccionComponent').default
         },
-        {
-            path:'/edit/:id',
-            name:'playlist_editar',
-            component: require('./components/EditarReproduccionComponent').default
-        },
+     
         {
             path:'/playlist/crear',
             name:'playlist_crear',
@@ -47,6 +43,11 @@ let router = new VueRouter({
             name:'estadistica',
             component: require('./components/EstadisticaComponent').default
         },
+        {
+            path:'/edit/:id',
+            name:'playlist_editar',
+            component: require('./components/EditarReproduccionComponent').default
+        }
         // {
         //     path:'*',
         //     name:'dashboard',

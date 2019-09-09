@@ -10,7 +10,7 @@
             <div class="form-group row">
               <label for="example-text-input" class="col-sm-4 col-form-label">Nombre</label>
               <div class="col-sm-8">
-                <input class="form-control" type="text" value v-model="nombre_playlist" placeholder="Lista de Reproducción" id="example-text-input"
+                <input class="form-control" type="text" v-model="nombre_playlist" placeholder="Lista de Reproducción" id="example-text-input"
                 />
               </div>
             </div>
@@ -340,15 +340,13 @@ export default {
     },
 
     computeSubTotal: function(item) {
-      //formatPrice is removed here because its not defined in the question
-
+      //formatPrice is removed here because its not defined in the questions
       this.subTotalAcum = this.subTotalAcum + item.testduration;
       return this.subTotalAcum;
     },
 
     parseToHour(seconds){
-             
-             return moment().startOf('day').seconds(seconds).format('H:mm:ss');
+      return moment().startOf('day').seconds(seconds).format('H:mm:ss');
     },
 
     total(){
