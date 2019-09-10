@@ -19,7 +19,7 @@
 @section('content')
 
 <div id="app">
-<editar-component></editar-component>
+    <editar-component></editar-component>
 </div>
                  
 @endsection

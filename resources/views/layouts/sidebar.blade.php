@@ -7,7 +7,7 @@
                         <ul class="metismenu" id="side-menu">
                             <li>
                                 
-                            <router-link to="dashboard" class="waves-effect"><i class="ti-dashboard"></i><span> Dashboard </span></router-link>
+                            <router-link to="/dashboard" class="waves-effect"><i class="ti-dashboard"></i><span> Dashboard </span></router-link>
                                 
                             </li>
 
