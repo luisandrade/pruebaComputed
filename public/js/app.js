@@ -62264,12 +62264,10 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _vm._m(1),
-    _vm._v(" "),
     _c("div", { staticClass: "col-lg-8" }, [
       _c("div", { staticClass: "card" }, [
         _c("div", { staticClass: "card-body" }, [
-          _vm._m(2),
+          _vm._m(1),
           _vm._v(" "),
           _c(
             "div",
@@ -62467,11 +62465,11 @@ var render = function() {
             [_c("i", { staticClass: "ti-save" }), _vm._v(" Guardar Lista")]
           ),
           _vm._v(" "),
-          _vm._m(3)
+          _vm._m(2)
         ])
       ]),
       _vm._v(" "),
-      _vm._m(4)
+      _vm._m(3)
     ])
   ])
 }
@@ -62519,78 +62517,13 @@ var staticRenderFns = [
     return _c(
       "div",
       {
-        staticClass: "modal fade bs-example-modal-center show",
-        staticStyle: { display: "block", "padding-right": "17px" },
-        attrs: {
-          tabindex: "-1",
-          role: "dialog",
-          "aria-labelledby": "mySmallModalLabel",
-          "aria-modal": "true"
-        }
-      },
-      [
-        _c("div", { staticClass: "modal-dialog modal-dialog-centered" }, [
-          _c("div", { staticClass: "modal-content" }, [
-            _c("div", { staticClass: "modal-header" }, [
-              _c("h5", { staticClass: "modal-title mt-0" }, [
-                _vm._v("Center modal")
-              ]),
-              _c(
-                "button",
-                {
-                  staticClass: "close",
-                  attrs: {
-                    type: "button",
-                    "data-dismiss": "modal",
-                    "aria-hidden": "true"
-                  }
-                },
-                [_vm._v("×")]
-              )
-            ]),
-            _c("div", { staticClass: "modal-body" }, [
-              _c("p", [
-                _vm._v(
-                  "Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros."
-                )
-              ]),
-              _c("p", [
-                _vm._v(
-                  "Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor."
-                )
-              ]),
-              _c("p", { staticClass: "mb-0" }, [
-                _vm._v(
-                  "Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla."
-                )
-              ])
-            ])
-          ])
-        ])
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
         staticClass: "btn-group m-b-15",
         attrs: { role: "group", "aria-label": "Basic example" }
       },
       [
         _c(
           "button",
-          {
-            staticClass: "btn btn-success",
-            attrs: {
-              type: "button",
-              "data-toggle": "modal",
-              "data-target": ".bs-example-modal-center"
-            }
-          },
+          { staticClass: "btn btn-success", attrs: { type: "button" } },
           [
             _c("i", { staticClass: "ion ion-md-add-circle" }),
             _vm._v(" Agregar Live\n            ")
